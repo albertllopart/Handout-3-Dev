@@ -9,9 +9,18 @@
 // TODO 2: Create a struct to hold information for a TileSet
 // Ignore Terrain Types and Tile Types for now, but we want the image!
 // ----------------------------------------------------
+struct tileSet
+{
+	unsigned int	firstGid;
+	unsigned int	tileWidth;
+	unsigned int	tileHeight;
+	unsigned int	spacing;
+	unsigned int	margin;
+};
 
 
 // TODO 1: Create a struct needed to hold the information to Map node
+
 
 
 // ----------------------------------------------------
@@ -36,18 +45,37 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
+	bool LoadFillMap(pugi::xml_node&);
+
 private:
 
 
 public:
 
 	// TODO 1: Add your struct for map info as public for now
+	struct mapInfo
+	{
+		unsigned int	width;
+		unsigned int	height;
+		unsigned int	tileWidth;
+		unsigned int	tileHeight;
+		int				nextID;
+
+		enum orientation {orthogonal = 1, isometric, staggered, hexagonal};
+		enum renderorder {rightdown = 5, rightup, leftdown, leftup};
+
+		unsigned int	orientation;
+		unsigned int	renderorder;
+	};
 
 private:
 
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
+
+	mapInfo				mapStruct;
+	tileSet				tileStruct;
 };
 
 #endif // __j1MAP_H__

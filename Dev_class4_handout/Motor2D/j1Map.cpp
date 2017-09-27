@@ -85,3 +85,9 @@ bool j1Map::Load(const char* file_name)
 	return ret;
 }
 
+bool j1Map::LoadFillMap(pugi::xml_node& data)
+{
+	pugi::xml_document LocalDoc;
+	//pugi::xml_parse_result LocalResult = LocalDoc.load_file("name.tmx"
+}
+
